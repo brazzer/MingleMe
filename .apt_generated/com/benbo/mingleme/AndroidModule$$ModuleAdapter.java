@@ -25,35 +25,8 @@ public final class AndroidModule$$ModuleAdapter extends ModuleAdapter<AndroidMod
    */
   @Override
   public void getBindings(Map<String, Binding<?>> map, AndroidModule module) {
-    map.put("@com.benbo.mingleme.ForApplication()/android.content.Context", new ProvideApplicationContextProvidesAdapter(module));
     map.put("android.location.LocationManager", new ProvideLocationManagerProvidesAdapter(module));
-  }
-
-  /**
-   * A {@code Binding<android.content.Context>} implementation which satisfies
-   * Dagger's infrastructure requirements including:
-   * 
-   * Being a {@code Provider<android.content.Context>} and handling creation and
-   * preparation of object instances.
-   */
-  public static final class ProvideApplicationContextProvidesAdapter extends Binding<android.content.Context>
-      implements Provider<android.content.Context> {
-    private final AndroidModule module;
-
-    public ProvideApplicationContextProvidesAdapter(AndroidModule module) {
-      super("@com.benbo.mingleme.ForApplication()/android.content.Context", null, IS_SINGLETON, "com.benbo.mingleme.AndroidModule.provideApplicationContext()");
-      this.module = module;
-      setLibrary(true);
-    }
-
-    /**
-     * Returns the fully provisioned instance satisfying the contract for
-     * {@code Provider<android.content.Context>}.
-     */
-    @Override
-    public android.content.Context get() {
-      return module.provideApplicationContext();
-    }
+    map.put("@com.benbo.mingleme.ForApplication()/android.content.Context", new ProvideApplicationContextProvidesAdapter(module));
   }
 
   /**
@@ -80,6 +53,33 @@ public final class AndroidModule$$ModuleAdapter extends ModuleAdapter<AndroidMod
     @Override
     public android.location.LocationManager get() {
       return module.provideLocationManager();
+    }
+  }
+
+  /**
+   * A {@code Binding<android.content.Context>} implementation which satisfies
+   * Dagger's infrastructure requirements including:
+   * 
+   * Being a {@code Provider<android.content.Context>} and handling creation and
+   * preparation of object instances.
+   */
+  public static final class ProvideApplicationContextProvidesAdapter extends Binding<android.content.Context>
+      implements Provider<android.content.Context> {
+    private final AndroidModule module;
+
+    public ProvideApplicationContextProvidesAdapter(AndroidModule module) {
+      super("@com.benbo.mingleme.ForApplication()/android.content.Context", null, IS_SINGLETON, "com.benbo.mingleme.AndroidModule.provideApplicationContext()");
+      this.module = module;
+      setLibrary(true);
+    }
+
+    /**
+     * Returns the fully provisioned instance satisfying the contract for
+     * {@code Provider<android.content.Context>}.
+     */
+    @Override
+    public android.content.Context get() {
+      return module.provideApplicationContext();
     }
   }
 }

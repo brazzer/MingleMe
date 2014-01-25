@@ -48,6 +48,8 @@ public class MainActivity extends BaseActivity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerListLeft = (ListView) findViewById(R.id.left_drawer);
 		mDrawerListRight = (ListView) findViewById(R.id.right_drawer);
+		
+		setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
 
 		// Set the adapter for the list view
 		mDrawerListLeft.setAdapter(new ArrayAdapter<String>(this,
@@ -87,6 +89,10 @@ public class MainActivity extends BaseActivity {
 		getActionBar().setHomeButtonEnabled(true);
 
 	}
+	public void onSearchRequested(View view){
+		onSearchRequested();
+	}
+
 
 	private void populateRightMenu() {
 		List<User> users = _userRepository.getActiveUsers();

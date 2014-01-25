@@ -25,35 +25,8 @@ public final class AndroidModule$$ModuleAdapter extends ModuleAdapter<AndroidMod
    */
   @Override
   public void getBindings(Map<String, Binding<?>> map, AndroidModule module) {
-    map.put("android.location.LocationManager", new ProvideLocationManagerProvidesAdapter(module));
     map.put("@com.benbo.mingleme.ForApplication()/android.content.Context", new ProvideApplicationContextProvidesAdapter(module));
-  }
-
-  /**
-   * A {@code Binding<android.location.LocationManager>} implementation which satisfies
-   * Dagger's infrastructure requirements including:
-   * 
-   * Being a {@code Provider<android.location.LocationManager>} and handling creation and
-   * preparation of object instances.
-   */
-  public static final class ProvideLocationManagerProvidesAdapter extends Binding<android.location.LocationManager>
-      implements Provider<android.location.LocationManager> {
-    private final AndroidModule module;
-
-    public ProvideLocationManagerProvidesAdapter(AndroidModule module) {
-      super("android.location.LocationManager", null, IS_SINGLETON, "com.benbo.mingleme.AndroidModule.provideLocationManager()");
-      this.module = module;
-      setLibrary(true);
-    }
-
-    /**
-     * Returns the fully provisioned instance satisfying the contract for
-     * {@code Provider<android.location.LocationManager>}.
-     */
-    @Override
-    public android.location.LocationManager get() {
-      return module.provideLocationManager();
-    }
+    map.put("android.location.LocationManager", new ProvideLocationManagerProvidesAdapter(module));
   }
 
   /**
@@ -80,6 +53,33 @@ public final class AndroidModule$$ModuleAdapter extends ModuleAdapter<AndroidMod
     @Override
     public android.content.Context get() {
       return module.provideApplicationContext();
+    }
+  }
+
+  /**
+   * A {@code Binding<android.location.LocationManager>} implementation which satisfies
+   * Dagger's infrastructure requirements including:
+   * 
+   * Being a {@code Provider<android.location.LocationManager>} and handling creation and
+   * preparation of object instances.
+   */
+  public static final class ProvideLocationManagerProvidesAdapter extends Binding<android.location.LocationManager>
+      implements Provider<android.location.LocationManager> {
+    private final AndroidModule module;
+
+    public ProvideLocationManagerProvidesAdapter(AndroidModule module) {
+      super("android.location.LocationManager", null, IS_SINGLETON, "com.benbo.mingleme.AndroidModule.provideLocationManager()");
+      this.module = module;
+      setLibrary(true);
+    }
+
+    /**
+     * Returns the fully provisioned instance satisfying the contract for
+     * {@code Provider<android.location.LocationManager>}.
+     */
+    @Override
+    public android.location.LocationManager get() {
+      return module.provideLocationManager();
     }
   }
 }
